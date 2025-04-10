@@ -8,19 +8,6 @@
     <div class="row" style="width: 150%">
       
         <ul class="social-links">
-          <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSexRNANULVR-Uh9bb-3PDeU1Gg6EvG3Xcx-W7EFKoc3TUUF6g/viewform"><h6>PMB Online</h6></a></li>
-          <li><h6>|</h6></li>
-          <li><a href="https://elearning.piksi.ac.id/"><h6>E – Learning</h6></a></li>
-          <li><h6>|</h6></li>
-          <li><a href="https://www.piksi.ac.id/"><h6>Piksi Ganesha</h6></a></li>
-          <li><h6>|</h6></li>
-          <li><a href="https://journal.piksi.ac.id/"><h6>E – Journal</h6></a></li>
-          <li><h6>|</h6></li>
-          <li><a href="https://sister.kemdikbud.go.id/beranda"><h6>SISTER</h6></a></li>
-          <li><h6>|</h6></li>
-          <li><a href="https://piksilibrary.perpustakaan.co.id/home.ks"><h6>E-Book</h6></a></li>
-          <li><h6>|</h6></li>
-          <li><a href="https://mahasiswa.piksi.ac.id/"><h6>Online Value</h6></a></li>
           <li style="color: white"><h6><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></h6></li>
           <li><h6><a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a></h6></li>
           <li><h6><a href="https://www.tiktok.com/"><i class="fab fa-tiktok"></i></a></h6></li>

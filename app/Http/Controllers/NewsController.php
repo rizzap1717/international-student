@@ -138,6 +138,7 @@ public function indexapi()
 
         return redirect()->route('news.index')->with('warning', 'Data has been updated successfully!');
     }
+    
 
     /**
      * Remove the specified resource from storage.

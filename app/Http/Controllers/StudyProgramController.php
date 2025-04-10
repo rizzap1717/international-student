@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\StudyProgram;
 use App\Models\Faculties;
-use App\Models\Lecturer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -18,10 +17,9 @@ class StudyProgramController extends Controller
     public function index()
     {
         $prody = StudyProgram::all();
-        $lecture = Lecturer::all();
         $faculties = Faculties::all();
 
-        return view('admin.study_program.index', compact('prody', 'faculties', 'lecture'));
+        return view('admin.study_program.index', compact('prody', 'faculties'));
     }
 
     /**
@@ -32,10 +30,9 @@ class StudyProgramController extends Controller
     public function create()
     {
         $prody = StudyProgram::all();
-        $lecture = Lecturer::all();
         $faculties = Faculties::all();
 
-        return view('admin.study_program.create', compact('prody', 'faculties', 'lecture'));
+        return view('admin.study_program.create', compact('prody', 'faculties'));
     }
 
     /**

@@ -8,6 +8,8 @@ use App\Models\Lecturer;
 use Illuminate\Http\Request;
 use PharIo\Manifest\Author;
 use Illuminate\Support\Facades\Session;
+use RealRashid\SweetAlert\Facades\Alert;
+
 class FacultiesController extends Controller
 {
     public function index()
@@ -63,6 +65,22 @@ class FacultiesController extends Controller
         ;
     }
 
+    public function storeapi(Request $request)
+    {
+
+        $faculties = faculties::create([
+            'faculty_name' => $request->faculty_name, 
+            'description' => $request->description, 
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Fakultas berhasil ditambahkan',
+            'faculties' => $faculties
+        ], 201);
+    }
+
+
     public function edit($id)
     {
         $faculties = Faculties::findOrFail($id); // Ubah $faculties menjadi $faculties
@@ -88,16 +106,73 @@ class FacultiesController extends Controller
         return redirect()->route('faculties.index')->with('warning', 'Data has been updated!');
     }
 
-    public function destroy($id)
+    public function updateapi(Request $request, $id)
     {
-        if(!Faculties::destroy($id)){
-            return redirect()->back();
+        $faculties = faculties::find($id);
+        if ($faculties) {
+            $faculties->faculty_name = $request->faculty_name;
+            $faculties->description = $request->description;
+            $faculties->save();
+            return response([
+                'success' => true,
+                'message' => 'Data berhasil diperbarui',
+                'data' => $faculties,
+            ],200 );
+        } else {
+            return response()->json([
+                'success'=> false,
+                'message'=> 'data gagal diperbarui'
+            ]);
+        }   
+    }
+
+
+
+    public function destroy($id)
+{
+    try {
+        $faculty = Faculties::findOrFail($id);
+
+        // Cek apakah ada study program sebelum menghapus
+        if ($faculty->studyPrograms()->exists()) {
+            return redirect()->route('faculties.index')->with('error', 'Fakultas masih memiliki program studi dan tidak dapat dihapus.');
         }
 
-       Alert::error('Error Title', 'Error Message');
-        $faculties = Faculties::findOrFail($id);
+        $faculty->delete(); // Pastikan ini tidak di-bypass
+
+        Alert::success('Berhasil!', 'Fakultas berhasil dihapus.');
+    } catch (\Exception $e) {
+        Alert::error('Gagal!', 'Terjadi kesalahan: ' . $e->getMessage());
+    }
+
+    return redirect()->route('faculties.index');
+}
+
+
+    public function deleteapi($id)
+    {
+        $faculties = faculties::find($id);
+
+        if (!$faculties) {
+            return response()->json(['success' => false, 'message' => 'faculties not found'], 404);
+        }
+
         $faculties->delete();
 
-        return redirect()->route('faculties.index')->with('danger', 'Data has been deleted!');
+        return response()->json([
+            'success' => true,
+            'message' => 'faculties deleted successfully'
+        ]);
     }
+//     public function getFaculties()
+// {
+//     $data = Faculties::all()->map(function ($faculties) {
+//         return $faculties;
+//     });
+
+//     return response()->json([
+//         'status' => 'success',
+//         'data' => $data
+//     ]);
+// }
 }

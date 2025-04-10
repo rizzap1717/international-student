@@ -30,9 +30,14 @@ class FrontController extends Controller
     // API untuk mengambil semua fakultas dan prodi
     public function apiFaculty()
     {
+        $prody4 = StudyProgram::with('faculties')->get();
+        $prody2 = StudyProgram::with('faculties')->get();
+        $prody3 = StudyProgram::with('faculties')->get();
         $faculties = Faculties::with('studyPrograms')->get();
-        return response()->json($faculties);
+        return view('faculty', compact('faculties','prody4','prody2','prody3'));
     }
+    
+    
 
     // API untuk detail program studi berdasarkan ID
     public function apiDetailProdi($id)

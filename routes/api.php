@@ -2,30 +2,40 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\LecturerController;
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\FacultiesController;
+use App\Http\Controllers\NewsController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-
-Route::post('/register', [\App\Http\Controllers\Api\AuthController::class, 'register']);
-Route::post('/login', [\App\Http\Controllers\Api\AuthController::class, 'login']);
-
-Route::middleware('auth:sanctum')->group( function () {
-    Route::get('/news', [\App\Http\Controllers\NewsController::class, 'indexapi']);
-    Route::get('/fakultas', [\App\Http\Controllers\FacultiesController::class, 'indexapi']);
-
+// API Fakultas (Tanpa Login)
+Route::prefix('faculties')->name('faculties.')->group(function () {
+    Route::get('/', [FacultiesController::class, 'index'])->name('index'); // Ambil semua fakultas
+    Route::get('/{id}', [FacultiesController::class, 'show'])->name('show'); // Ambil fakultas berdasarkan ID
 });
 
+// API Berita (Tanpa Login)
+Route::prefix('news')->group(function () {
+    Route::get('/', [NewsController::class, 'index']); // Ambil semua berita
+    Route::get('/{id}', [NewsController::class, 'show'])->name('show'); // Ambil berita berdasarkan ID
+});
 
-Route::middleware(['auth:sanctum'])->group(function () {
-    Route::post('/logout', [\App\Http\Controllers\Api\AuthController::class, 'logout']);
+// API dengan Autentikasi (Login Diperlukan)
+Route::middleware('auth:sanctum')->group(function () {
+    // Hanya endpoint ini yang butuh login
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/login', [AuthController::class, 'login']);
+    
+    // API Fakultas (CRUD selain GET membutuhkan login)
+    Route::prefix('faculties')->group(function () {
+        Route::post('/', [FacultiesController::class, 'store'])->name('store');
+        Route::put('/{id}', [FacultiesController::class, 'update'])->name('update');
+        Route::delete('/{id}', [FacultiesController::class, 'destroy'])->name('destroy');
+    });
+
+    // API Berita (CRUD selain GET membutuhkan login)
+    Route::prefix('news')->group(function () {
+        Route::post('/', [NewsController::class, 'storeapi']);
+    });
+
+    // Logout
+    Route::post('/logout', [AuthController::class, 'logout']);
 });

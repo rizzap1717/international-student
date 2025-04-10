@@ -30,26 +30,25 @@
                 <i class="menu-icon tmenu-icon tf-icons bx bx-user-pin" class="menu-item "></i>
                 <div data-i18n="Authentications">Academic</div>
             </a>
-            <ul class="menu-sub">
-                <li class="menu-item {{ request()->routeIs('faculties.index') ? 'active' : '' }}">
-                    <a href="{{ route('faculties.index') }}" class="menu-link">
-                        <div data-i18n="Basic">Faculties</div>
-                    </a>
-                </li>
-                <li
-                    class="menu-item {{ request()->routeIs('StudyProgram.index') ? 'active' : '' }}">
-                    <a href="{{ route('StudyProgram.index') }}" class="menu-link">
-                        <div data-i18n="Basic">Study Program</div>
-                    </a>
-                </li>
+            <ul  class="menu-sub {{ request()->routeIs('faculties.*') ? 'active' : '' }}">
+                <a href="{{ route('faculties.index') }}" class="menu-link">
+                    <i class="menu-icon bx bx-building"></i>
+                    <div data-i18n="Faculties">Faculties</div>
+                </a>
+                {{ request()->routeIs('study_program.index') ? 'active' : '' }}
+                <a href="{{ route('study_program.index') }}" class="menu-link">
+                    <i class="menu-icon bx bx-book"></i>
+                    <div data-i18n="Faculties">Study Program</div>
+                </a>
+                
             </ul>
         </li>
         <li
-            class="menu-item {{ request()->routeIs('profile.*') || request()->routeIs('accreditation.*') || request()->routeIs('achievement.*') ? 'active menu-open' : '' }}">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon bx bx-user" class="menu-item "></i>
-                <div data-i18n="Authentications">Profile</div>
-            </a>
+        class="menu-item {{ request()->routeIs('profil.*') || request()->routeIs('accreditation.*') || request()->routeIs('achievement.*') ? 'active menu-open' : '' }}">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class="menu-icon bx bx-user"></i>
+            <div data-i18n="Authentications">Profile</div>
+        </a>
             <ul class="menu-sub">
                 <li class="menu-item {{ request()->routeIs('profile.index') ? 'active' : '' }}">
                     <a href="{{ route('profile.index') }}" class="menu-link">

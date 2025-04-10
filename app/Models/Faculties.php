@@ -4,40 +4,28 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-Use Alert;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Faculties extends Model
 {
     use HasFactory;
 
     protected $fillable = ['faculty_name', 'description', 'picture'];
-    public $timestamp = true;
+    public $timestamps = true; // Perbaikan dari 'timestamp' ke 'timestamps'
 
-    public function Lecture(){
-        return $this->hasMany(Lecturer::class, 'lecture_id');
-    }
-
-    public function StudyProgram(){
+    public function studyPrograms(): HasMany
+    {
         return $this->hasMany(StudyProgram::class, 'faculty_id');
     }
+
     protected static function boot()
-    {
-        parent::boot();
-    
-        self::deleting(function ($faculties) {
-            if ($faculties->StudyProgram->count() > 0 ) {
-    
-                $html = 'The faculty cannot be deleted because it still has study programs : ';
-                $html .= '<ul>';
-                foreach ($faculties->StudyProgram as $data) {
-                    $html .= "<li>$data->title</li>";
-                }
-                $html .= '</ul>';
-                Alert::error('Error Title', 'The faculty cannot be deleted because it still has study programs');
-                return false;
-            }
-        });
-    }
+{
+    parent::boot();
 
+    static::deleting(function ($faculty) {
+        if ($faculty->studyPrograms()->count() > 0) {
+            return false; // Stop proses delete
+        }
+    });
 }
-
+}
