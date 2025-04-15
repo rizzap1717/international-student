@@ -23,9 +23,9 @@
   /* Background color for the entire website, including individual sections */
   --default-color: #444444;
   /* Default color used for the majority of the text content across the entire website */
-  --heading-color: #0092c3;
+  --heading-color: #83ddfb;
   /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #0092c3;
+  --accent-color: #83ddfb;
   /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --surface-color: #ffffff;
   /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
@@ -58,7 +58,7 @@
 
 .dark-background {
   --background-color: #060606;
-  --default-color: #98eef7;
+  --default-color: #ffffff;
   --heading-color: #ffffff;
   --surface-color: #252525;
   --contrast-color: #ffffff;
@@ -66,7 +66,8 @@
 
 /* Smooth scroll */
 :root {
-  scroll-behavior: smooth;
+  
+  q-behavior: smooth;
 }
 
 /*--------------------------------------------------------------
@@ -74,7 +75,7 @@
 --------------------------------------------------------------*/
 body {
   color: var(--default-color);
-  background-color: #bdf2f7;
+  background-color: #83ddfb;
   font-family: var(--default-font);
 }
 
@@ -859,7 +860,7 @@ h6 {
   color: var();
   background-color: var(--background-color);
   position: relative;
-}
+} 
 
 .page-title .heading {
   padding: 80px 0;
@@ -994,7 +995,79 @@ section,
 }
 
 
+/* ------------------------------------------------------------
+ #Pendaftaran
+--------------------------------------------------------------*/
+.container_registration {
+  max-width: 600px;
+  margin: 50px auto;
+  background: #f8f9fa;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
 
+.container_registration h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group select {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.form-group label {
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 14px;
+  font-size: 18px;
+  font-weight: 600;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
 
 
 /*--------------------------------------------------------------

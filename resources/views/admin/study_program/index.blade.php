@@ -50,7 +50,7 @@
                                     </button>
                                 </li>
                                 <li>
-                                    <form id="delete-form-{{ $data->id }}" action="{{ route('study_program.destroy', $data->id) }}" method="POST" style="display: none;">
+                                    <form id="delete-form-{{ $data->id }}" action="{{ route('StudyProgram.destroy', $data->id) }}" method="POST" style="display: none;">
                                         @csrf
                                         @method('DELETE')
                                     </form>
@@ -76,7 +76,7 @@
                 <h5 class="modal-title">Add Study Program</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('study_program.store') }}" method="POST">
+            <form action="{{ route('StudyProgram.store') }}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <div class="row">
@@ -117,7 +117,7 @@
                 <h5 class="modal-title">Update Study Program</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('study_program.update', $data->id) }}" method="POST">
+            <form action="{{ route('StudyProgram.update', $data->id) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="modal-body">

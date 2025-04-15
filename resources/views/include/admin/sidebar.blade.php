@@ -35,8 +35,9 @@
                     <i class="menu-icon bx bx-building"></i>
                     <div data-i18n="Faculties">Faculties</div>
                 </a>
-                {{ request()->routeIs('study_program.index') ? 'active' : '' }}
-                <a href="{{ route('study_program.index') }}" class="menu-link">
+            </ul>
+            <ul class="menu-sub {{ request()->routeIs('StudyProgram*') ? 'active' : '' }}"> 
+                <a href="{{ route('StudyProgram.index') }}" class="menu-link">
                     <i class="menu-icon bx bx-book"></i>
                     <div data-i18n="Faculties">Study Program</div>
                 </a>

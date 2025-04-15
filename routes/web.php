@@ -13,7 +13,7 @@ use App\Http\Controllers\StudyProgramController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\FacultiesController;
 use App\Http\Controllers\HomeController;
-// use App\Http\Controllers\LanguageController;
+
    
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
@@ -39,25 +39,24 @@ Auth::routes();
 // Route::get('/test', function () {
 //     return view('layouts.admin.dashboard');
 // });
-Route::post('/login', [AuthController::class, 'login']);
-Route::post('/register', [AuthController::class, 'register']);
+// Route::post('/login', [AuthController::class, 'login']);
+// Route::post('/register', [AuthController::class, 'register']);
 
 
 Route::get('/', [FrontController::class, 'welcome']); 
-Route::get('/about', [FrontController::class, 'apiabout']);
-Route::get('/faculty', [FrontController::class, 'apifaculty']);
-Route::get('/structure', [FrontController::class, 'apistructure']);
-Route::get('/news/{id}', [FrontController::class, 'apinews']);
-Route::get('/visimisi', [FrontController::class, 'apivisimisi']);
-Route::get('/newsDetail', [FrontController::class, 'apinewsDetail']);
-Route::get('/newsDetail/{id}', [FrontController::class, 'apinewsDetail'])->name('newsDetail');
-Route::get('/detailprodi', [FrontController::class, 'apidetailprodi']);
-Route::get('/detailprodi/{id}', [FrontController::class, 'apidetailprodi'])->name('detailprodi');
-Route::get('/acreditation', [FrontController::class, 'apiacreditation']);
-
-
-
-
+Route::get('/about', [FrontController::class, 'about'])->name('about');
+Route::get('/faculty', [FrontController::class, 'faculty']);
+Route::get('/structure', [FrontController::class, 'structure']);
+Route::get('/news', [FrontController::class, 'news']);
+Route::get('/visimisi', [FrontController::class, 'visimisi']);
+Route::get('/newsDetail/{id}', [FrontController::class, 'newsDetail'])->name('newsDetail');
+Route::get('/detailprodi', [FrontController::class, 'detailprodi']);
+Route::get('/detailprodi/{id}', [FrontController::class, 'detailprodi'])->name('detailprodi');
+Route::get('/get-study-program/{facultyName}', [FrontController::class, 'getStudyProgram']);
+Route::get('/acreditation', [FrontController::class, 'acreditation'])->name('acreditation');
+Route::get('/pendaftaran', [FrontController::class, 'registrationForm'])->name('register.form');
+Route::post('/pendaftaran', [FrontController::class, 'processRegistration'])->name('register.store');
+Route::get('/registration', [FrontController::class, 'emails/registration'])->name('registration');
 
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
@@ -72,13 +71,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::delete('structure/{id}', [StructureController::class, 'destroy'])->name('structure.destroy');
 
     // Route Study Program
-    Route::get('study-program', [StudyProgramController::class, 'index'])->name('study_program.index');
-Route::get('study-program/create', [StudyProgramController::class, 'create'])->name('study_program.create');
-Route::post('study-program', [StudyProgramController::class, 'store'])->name('study_program.store');
-Route::get('study-program/{id}', [StudyProgramController::class, 'show'])->name('study_program.show');
-Route::get('study-program/{id}/edit', [StudyProgramController::class, 'edit'])->name('study_program.edit');
-Route::put('study-program/{id}', [StudyProgramController::class, 'update'])->name('study_program.update');
-Route::delete('study-program/{id}', [StudyProgramController::class, 'destroy'])->name('study_program.destroy');
+    Route::get('studyprogram', [StudyProgramController::class, 'index'])->name('StudyProgram.index');
+    Route::get('studyprogram/create', [StudyProgramController::class, 'create'])->name('StudyProgram.create');
+    Route::post('studyprogram', [StudyProgramController::class, 'store'])->name('StudyProgram.store');
+    Route::get('studyprogram/{id}', [StudyProgramController::class, 'show'])->name('StudyProgram.show');
+    Route::get('studyprogram/{id}/edit', [StudyProgramController::class, 'edit'])->name('StudyProgram.edit');
+    Route::put('studyprogram/{id}', [StudyProgramController::class, 'update'])->name('StudyProgram.update');
+    Route::delete('studyprogram/{id}', [StudyProgramController::class, 'destroy'])->name('StudyProgram.destroy');
 
     // Route Faculty
     Route::get('faculty', [FacultiesController::class, 'index'])->name('faculties.index');

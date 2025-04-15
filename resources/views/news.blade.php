@@ -23,7 +23,7 @@
             </nav>
         </div><!-- End Page Title -->
 
-        <div class="container">
+        <div class="container_news">
             <div class="col-lg-12">
                 <!-- Blog Posts Section -->
                 <section id="blog-posts" class="blog-posts section">
@@ -46,7 +46,7 @@
                                         </div>
                                         <br>
                                         <div class="read-more">
-                                            <a href="{{ route('newsDetail', $data->id) }}">Read More</a>
+                                            <a href="{{ route('news.detail', $data->id) }}">Read More</a>
                                         </div>
                                     </article>
                                 </div>

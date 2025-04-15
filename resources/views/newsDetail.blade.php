@@ -5,7 +5,7 @@
     <!-- Page Title -->
     <div class="page-title">
       <div class="heading">
-        <div class="container">
+        <div class="container_detail">
           <div class="row d-flex justify-content-center text-center">
             <div class="col-lg-8">
               <h1>News Details</h1>

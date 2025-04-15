@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\FacultiesController;
-use App\Http\Controllers\NewsController;
+use App\Http\Controllers\Api\NewsController;
 
 // API Fakultas (Tanpa Login)
 Route::prefix('faculties')->name('faculties.')->group(function () {

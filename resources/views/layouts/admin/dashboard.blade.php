@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="assets/"
-    data-template="vertical-menu-template-free">
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default"
+    data-assets-path="assets/" data-template="vertical-menu-template-free">
 
 <head>
     <meta charset="utf-8" />
@@ -99,67 +99,75 @@
 
                     <!-- Toast Untuk Success -->
                     @if (session('success'))
-                    <div class="bs-toast toast toast-placement-ex m-2 bg-success top-0 end-0 fade show toast-custom"
-                        role="alert" aria-live="assertive" aria-atomic="true" id="toastSuccess">
-                        <div class="toast-header">
-                            <i class="bi bi-check-circle me-2"></i>
-                            <div class="me-auto fw-semibold">Success</div>
-                            <small>Just Now</small>
-                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        <div class="bs-toast toast toast-placement-ex m-2 bg-success top-0 end-0 fade show toast-custom"
+                            role="alert" aria-live="assertive" aria-atomic="true" id="toastSuccess">
+                            <div class="toast-header">
+                                <i class="bi bi-check-circle me-2"></i>
+                                <div class="me-auto fw-semibold">Success</div>
+                                <small>Just Now</small>
+                                <button type="button" class="btn-close" data-bs-dismiss="toast"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="toast-body">
+                                {{ session('success') }}
+                            </div>
                         </div>
-                        <div class="toast-body">
-                            {{ session('success') }}
-                        </div>
-                    </div>
                     @endif
 
                     {{-- Toast Untuk Error --}}
                     @if (session('error'))
-                    <div class="bs-toast toast toast-placement-ex m-2 bg-danger top-0 end-0 fade show toast-custom"
-                        role="alert" aria-live="assertive" aria-atomic="true" id="toastError">
-                        <div class="toast-header">
-                            <i class="bx bx-error me-2"></i>
-                            <div class="me-auto fw-semibold">Error</div>
-                            <small>Just Now</small>
-                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        <div class="bs-toast toast toast-placement-ex m-2 bg-danger top-0 end-0 fade show toast-custom"
+                            role="alert" aria-live="assertive" aria-atomic="true" id="toastError">
+                            <div class="toast-header">
+                                <i class="bx bx-error me-2"></i>
+                                <div class="me-auto fw-semibold">Error</div>
+                                <small>Just Now</small>
+                                <button type="button" class="btn-close" data-bs-dismiss="toast"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="toast-body">
+                                {{ session('error') }}
+                            </div>
                         </div>
-                        <div class="toast-body">
-                            {{ session('error') }}
-                        </div>
-                    </div>
                     @endif
 
 
                     {{-- Toast Untuk Danger --}}
+                    {{-- Toast Untuk Danger --}}
                     @if (session('danger'))
-                    <div class="bs-toast toast toast-placement-ex m-2 bg-danger top-0 end-0 fade show toast-custom"
-                        role="alert" aria-live="assertive" aria-atomic="true" id="toastError">
-                        <div class="toast-header">
-                            <i class="bx bx-error me-2"></i>
-                            <div class="me-auto fw-semibold">Danger</div>
-                            <small>Just Now</small>
-                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        <div class="bs-toast toast toast-placement-ex m-2 bg-danger top-0 end-0 fade toast-custom"
+                            role="alert" aria-live="assertive" aria-atomic="true" id="toastDanger">
+
+                            <div class="toast-header">
+                                <i class="bx bx-error me-2"></i>
+                                <div class="me-auto fw-semibold">Danger</div>
+                                <small>Just Now</small>
+                                <button type="button" class="btn-close" data-bs-dismiss="toast"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="toast-body">
+                                {{ session('danger') }}
+                            </div>
                         </div>
-                        <div class="toast-body">
-                            {{ session('danger') }}
-                        </div>
-                    </div>
                     @endif
+
 
                     {{-- Toast Untuk Warning --}}
                     @if (session('warning'))
-                    <div class="bs-toast toast toast-placement-ex m-2 bg-warning top-0 end-0 fade show toast-custom"
-                        role="alert" aria-live="assertive" aria-atomic="true" id="toastError">
-                        <div class="toast-header">
-                            <i class="bi bi-exclamation-triangle me-2"></i>
-                            <div class="me-auto fw-semibold">Warning</div>
-                            <small>Just Now</small>
-                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        <div class="bs-toast toast toast-placement-ex m-2 bg-warning top-0 end-0 fade toast-custom"
+                            role="alert" aria-live="assertive" aria-atomic="true" id="toastWarning">
+
+                            <div class="toast-header">
+                                <i class="bi bi-exclamation-triangle me-2"></i>
+                                <div class="me-auto fw-semibold">Warning</div>
+                                <small>Just Now</small>
+                                <button type="button" class="btn-close" data-bs-dismiss="toast"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="toast-body">
+                                {{ session('warning') }}
+                            </div>
                         </div>
-                        <div class="toast-body">
-                            {{ session('warning') }}
-                        </div>
-                    </div>
                     @endif
 
                     <!-- / Content -->
@@ -222,10 +230,12 @@
         });
     </script>
 
+
     {{-- UNTUK TOAST NOTIFIKASI VALIDASI --}}
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            @if ($errors->any())
+    @isset($errors)
+    @if ($errors->any())
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
                 var toastEl = document.getElementById('validationToast');
                 var toast = new bootstrap.Toast(toastEl, {
                     delay: 2000
@@ -239,47 +249,44 @@
                 setTimeout(function() {
                     toastEl.classList.remove('hide');
                 }, 2000); // Waktu 2 detik sebelum menghapus kelas hide
-            @endif
-        });
-    </script>
+            });
+        </script>
+    @endif
+@endisset
+
 
     {{-- UNTUK CONFIRM DELETE --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         function confirmDelete(id) {
-        Swal.fire({
-            title: 'Apakah Anda yakin?',
-            text: "Data yang dihapus tidak dapat dikembalikan!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, hapus!',
-            cancelButtonText: 'Batal'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                document.getElementById('delete-form-' + id).submit();
-            }
-        });
-    }
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Data yang dihapus tidak dapat dikembalikan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form-' + id).submit();
+                }
+            });
+        }
     </script>
 
 
     {{-- UNTUK SIDEBAR --}}
     <script>
+        // Sidebar aktif otomatis
         document.addEventListener('DOMContentLoaded', function() {
-            // Dapatkan URL saat ini
             const currentUrl = window.location.href;
-            console.log('Current URL:', currentUrl);
-
-            // Ambil semua item menu
             const menuItems = document.querySelectorAll('.menu-item');
 
-            // Tandai item menu yang sesuai
             menuItems.forEach(item => {
                 const route = item.getAttribute('data-route');
-                console.log('Menu item route:', route);
-                if (route === currentUrl) {
+                if (currentUrl.includes(route)) {
                     item.classList.add('active');
                 }
             });
