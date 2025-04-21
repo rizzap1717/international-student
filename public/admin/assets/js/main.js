@@ -6,6 +6,44 @@
 
 let menu, animate;
 
+document.addEventListener('DOMContentLoaded', function() {
+
+  
+
+  // Initial stats data
+  let stats = {
+    activeStudents: 0,
+    countries: 0,
+    applications: 0,
+  };
+
+  // Animation for number counting
+  const animateCounter = (element, startValue, endValue, duration = 1500) => {
+    let startTime;
+
+    function animate(currentTime) {
+      if (!startTime) startTime = currentTime;
+      const elapsedTime = currentTime - startTime;
+      const progress = Math.min(elapsedTime / duration, 1);
+
+      const currentValue = Math.floor(progress * (endValue - startValue) + startValue);
+      element.textContent = currentValue;
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        element.textContent = endValue; // Ensure we end at the exact target
+      }
+    }
+
+    requestAnimationFrame(animate);
+  };
+
+  // Update stats based on the students data
+});
+
+
+
 (function () {
   // Initialize menu
   //-----------------

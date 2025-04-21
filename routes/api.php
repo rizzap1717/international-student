@@ -7,9 +7,9 @@ use App\Http\Controllers\Api\FacultiesController;
 use App\Http\Controllers\Api\NewsController;
 
 // API Fakultas (Tanpa Login)
-Route::prefix('faculties')->name('faculties.')->group(function () {
-    Route::get('/', [FacultiesController::class, 'index'])->name('index'); // Ambil semua fakultas
-    Route::get('/{id}', [FacultiesController::class, 'show'])->name('show'); // Ambil fakultas berdasarkan ID
+Route::prefix('faculties')->name('api.faculties.')->group(function () {
+    Route::get('/', [FacultiesController::class, 'index'])->name('index'); // menjadi api.faculties.index
+    Route::get('/{id}', [FacultiesController::class, 'show'])->name('show');
 });
 
 // API Berita (Tanpa Login)

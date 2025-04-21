@@ -3,16 +3,18 @@
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
     <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Academic /</span> Vision And Mision</h4>
-</div>
+
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="card">
         <h5 class="card-header">
-            <button type="button" class="btn rounded-pill btn-info" data-bs-toggle="modal" data-bs-target="#createModal"
-                style="float: right; padding-left: 20px; padding-right: 20px; padding-top: 7px; padding-bottom: 7px">
-                <i class="bi bi-person-fill-add" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="left"
-                    data-bs-html="true" title="Add cuti"></i>
-                Add Profile Piksi
-            </button>
+            @if ($profil->count() < 1)
+                <button type="button" class="btn rounded-pill btn-info" data-bs-toggle="modal" data-bs-target="#createModal"
+                    style="float: right; padding-left: 20px; padding-right: 20px; padding-top: 7px; padding-bottom: 7px">
+                    <i class="bi bi-person-fill-add" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="left"
+                        data-bs-html="true" title="Add cuti"></i>
+                    Add Profile Piksi
+                </button>
+            @endif
             Table of Profile Piksi
         </h5>
 
@@ -126,6 +128,7 @@
             </form>
         </div>
     </div>
+</div>
 </div>
 @endforeach
 

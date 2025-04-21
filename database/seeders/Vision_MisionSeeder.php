@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Profile;
+use App\Models\Profil;
 
 class Vision_MisionSeeder extends Seeder
 {
@@ -15,9 +15,7 @@ class Vision_MisionSeeder extends Seeder
      */
     public function run()
     {
-        Profile::create([
-            'goals' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-            'vission' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        Profil::create([
         ]);
     }
 }

@@ -28,18 +28,18 @@
             class="menu-item {{ request()->routeIs('lecture.*') || request()->routeIs('faculties.*') || request()->routeIs('StudyProgram.*') ? 'active menu-open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tmenu-icon tf-icons bx bx-user-pin" class="menu-item "></i>
-                <div data-i18n="Authentications">Academic</div>
+                <div data-i18n="Authentications">Akademik</div>
             </a>
             <ul  class="menu-sub {{ request()->routeIs('faculties.*') ? 'active' : '' }}">
                 <a href="{{ route('faculties.index') }}" class="menu-link">
                     <i class="menu-icon bx bx-building"></i>
-                    <div data-i18n="Faculties">Faculties</div>
+                    <div data-i18n="Faculties">Fakultas</div>
                 </a>
             </ul>
             <ul class="menu-sub {{ request()->routeIs('StudyProgram*') ? 'active' : '' }}"> 
                 <a href="{{ route('StudyProgram.index') }}" class="menu-link">
                     <i class="menu-icon bx bx-book"></i>
-                    <div data-i18n="Faculties">Study Program</div>
+                    <div data-i18n="Faculties">Program Study</div>
                 </a>
                 
             </ul>
@@ -53,17 +53,17 @@
             <ul class="menu-sub">
                 <li class="menu-item {{ request()->routeIs('profile.index') ? 'active' : '' }}">
                     <a href="{{ route('profile.index') }}" class="menu-link">
-                        <div data-i18n="Basic">Vision Mision</div>
+                        <div data-i18n="Basic">Visi Misi</div>
                     </a>
                 </li>
                 <li class="menu-item {{ request()->routeIs('accreditation.index') ? 'active' : '' }}">
                     <a href="{{ route('accreditation.index') }}" class="menu-link">
-                        <div data-i18n="Basic">Accreditation</div>
+                        <div data-i18n="Basic">Akreditasi</div>
                     </a>
                 </li>
                 <li class="menu-item {{ request()->routeIs('achievement.index') ? 'active' : '' }}">
                     <a href="{{ route('achievement.index') }}" class="menu-link">
-                        <div data-i18n="Basic">Achivement</div>
+                        <div data-i18n="Basic">Penghargaan</div>
                     </a>
                 </li>
             </ul>
@@ -71,7 +71,7 @@
         <li class="menu-item {{ url()->current() == route('structure.index') ? 'active' : '' }}">
             <a href="{{ route('structure.index') }}" class="menu-link">
                 <i class='menu-icon bx bx-library'></i>
-                <div data-i18n="Analytics">Structure</div>
+                <div data-i18n="Analytics">Struktur</div>
             </a>
         </li>
 
@@ -81,7 +81,7 @@
         <li class="menu-item {{ url()->current() == route('news.index') ? 'active' : '' }}">
             <a href="{{ route('news.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-news"></i>
-                <div data-i18n="Analytics">News</div>
+                <div data-i18n="Analytics">Berita</div>
             </a>
         </li>
 

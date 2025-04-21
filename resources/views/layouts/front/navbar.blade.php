@@ -29,6 +29,7 @@
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="{{url('/')}}" class="active">Home<br></a></li>
+          <li><a href="{{url('pendaftaran')}}" class="active">Registration</a></li>
           <li class="dropdown"><a href="#" class="active"><span>Profile</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
               <li><a href="{{('about')}}">About</a></li>
@@ -39,7 +40,7 @@
           </li>
           <li class="dropdown"><a href="#" class="active"><span>Academic</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              <li class="dropdown"><a href="{{('faculty')}}"><span>faculty</span> </a>
+              <li class="dropdown"><a href="{{ url('/faculty')}}"><span>faculty</span> </a>
               </li> 
             </ul>
           </li>

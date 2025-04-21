@@ -18,6 +18,7 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,11 +37,6 @@ use Illuminate\Support\Facades\Session;
 
 Auth::routes();
 
-// Route::get('/test', function () {
-//     return view('layouts.admin.dashboard');
-// });
-// Route::post('/login', [AuthController::class, 'login']);
-// Route::post('/register', [AuthController::class, 'register']);
 
 
 Route::get('/', [FrontController::class, 'welcome']); 
@@ -52,15 +48,31 @@ Route::get('/visimisi', [FrontController::class, 'visimisi']);
 Route::get('/newsDetail/{id}', [FrontController::class, 'newsDetail'])->name('newsDetail');
 Route::get('/detailprodi', [FrontController::class, 'detailprodi']);
 Route::get('/detailprodi/{id}', [FrontController::class, 'detailprodi'])->name('detailprodi');
-Route::get('/get-study-program/{facultyName}', [FrontController::class, 'getStudyProgram']);
+Route::get('/get-study-programs/{facultyName}', [FrontController::class, 'getStudyProgram']);
 Route::get('/acreditation', [FrontController::class, 'acreditation'])->name('acreditation');
 Route::get('/pendaftaran', [FrontController::class, 'registrationForm'])->name('register.form');
 Route::post('/pendaftaran', [FrontController::class, 'processRegistration'])->name('register.store');
-Route::get('/registration', [FrontController::class, 'emails/registration'])->name('registration');
+Route::get('/thank-you', function () {
+    return view('emails.registration'); // Sesuaikan dengan nama view yang kamu buat
+})->name('register.thankyou');
 
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
-    Route::get('/dashboard', [HomeController::class, 'index'])->name('home');   
+// UNTUK PENERIMAAN REGISTRASI
+Route::middleware(['auth', 'role:admin,operator'])->group(function () {
+    // Ubah '/admin/operator' menjadi '/admin/pendaftaran'
+    Route::get('/admin/operator', [FrontController::class, 'showRegistrations'])->name('admin.operator');
+    
+    // Pastikan endpoint lain tetap relevan
+    Route::post('/admin/accept/{id}', [FrontController::class, 'accept'])->name('admin.accept');
+});
+
+
+
+
+
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {
+    Route::get('dashboard', [HomeController::class, 'index'])->name('home');   
+
     // Route Organization Structure
     Route::get('structure', [StructureController::class, 'index'])->name('structure.index');
     Route::get('structure/create', [StructureController::class, 'create'])->name('structure.create');
@@ -70,7 +82,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::put('structure/{id}', [StructureController::class, 'update'])->name('structure.update');
     Route::delete('structure/{id}', [StructureController::class, 'destroy'])->name('structure.destroy');
 
-    // Route Study Program
+    // Route Study Program  
     Route::get('studyprogram', [StudyProgramController::class, 'index'])->name('StudyProgram.index');
     Route::get('studyprogram/create', [StudyProgramController::class, 'create'])->name('StudyProgram.create');
     Route::post('studyprogram', [StudyProgramController::class, 'store'])->name('StudyProgram.store');

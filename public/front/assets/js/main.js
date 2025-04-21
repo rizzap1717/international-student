@@ -265,38 +265,31 @@ function scrollToSection(facultyId) {
 
 // jQuery: Populate study program select based on faculty
 $('#faculty').on('change', function () {
-  const facultyName = $(this).val();
-  if (facultyName) {
-    $.ajax({
-      url: '/get-study-program/' + facultyName,
-      type: "GET",
-      dataType: "json",
-      success: function (data) {
-        console.log(data); // Tambahkan ini untuk cek responnya di console
-        $('#study_program').empty().append('<option>Select Study Program</option>');
-        $.each(data, function (key, value) {
-          console.log("value:", value); // Tambahan debug
-          $('#study_program').append('<option value="' + value.id + '">' + value.prody_name + '</option>');
-        });
-      }
-    });
+  let facultyId = $(this).val();
+
+  if (facultyId) {
+      $('#study_program').html('<option>Loading...</option>');
+
+      $.ajax({
+          url: '/get-study-programs/' + facultyId,
+          type: 'GET',
+          success: function (data) {
+              $('#study_program').empty();
+              $('#study_program').append('<option value="">Select Program</option>');
+              $.each(data, function (key, value) {
+                  $('#study_program').append('<option value="' + value.id + '">' + value.prody_name + '</option>');
+              });
+          }
+      });
   } else {
-    $('#study_program').empty();
+      $('#study_program').html('<option value="">Select Program</option>');
   }
 });
 
-// phone number
-document.getElementById('phone').addEventListener('input', function (e) {
-  let value = e.target.value;
 
-  // Hapus semua karakter kecuali angka dan plus
-  value = value.replace(/[^\d+]/g, '');
-
-  // Pastikan hanya satu tanda +
-  if (value.indexOf('+') > 0) {
-    value = value.replace(/\+/g, '');
-    value = '+' + value;
+function scrollToSection(id) {
+  const section = document.getElementById(id);
+  if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
   }
-
-  e.target.value = value;
-});
+}

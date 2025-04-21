@@ -47,10 +47,12 @@
     <section id="values" class="values section">
 
       <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Acreditation</h2>
-        <p>International Students<br></p>
-      </div><!-- End Section Title -->
+      <div class="container section-title" data-aos="fade-up" style="text-align: center; margin-bottom: 50px;">
+        <h2 class="h2_dashboard" style="color: white; font-size: 42px; font-weight: 700; line-height: 1.2; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px;">
+            ACCREDITATION
+        </h2>
+        <div class="title-underline" style="width: 80px; height: 3px; background-color: #4CAF50; margin: 0 auto;"></div>
+    </div>
 
       <div class="container">
 
@@ -81,10 +83,11 @@
     <section id="recent-posts" class="recent-posts section">
 
       <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>News Posts</h2>
-        <p>Recent posts form our news</p>
-      </div><!-- End Section Title -->
+      <div class="container section-title" data-aos="fade-up" style="text-align: center; margin-bottom: 40px;">
+        <h2 style="font-size: 38px; font-weight: 600; line-height: 1.3; margin-bottom: 15px; color: #ffffff;">News Post</h2>
+        <p style="font-size: 18px; color: #666; max-width: 700px; margin: 0 auto;">Recent posts form our news</p>
+        <div class="title-underline" style="width: 60px; height: 3px; background-color: #3498db; margin: 20px auto 0;"></div>
+    </div><!-- End Section Title -->
 
       <div class="container">
 

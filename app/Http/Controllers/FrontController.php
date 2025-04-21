@@ -9,6 +9,7 @@ use App\Models\Faculties;
 use App\Models\StudyProgram;
 use App\Models\Structure;
 use App\Models\Registration;
+use App\Mail\Pendaftaran;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
@@ -39,15 +40,12 @@ class FrontController extends Controller
     $prody2 = StudyProgram::with('faculties')->get();
     $prody3 = StudyProgram::with('faculties')->get();
     $faculties = Faculties::with('studyPrograms')->get();
-    return view('faculty', compact('faculties','prody4','prody2','prody3'));
+    return view('faculty', compact('faculties','prody1','prody2','prody3'));
 }
 
-public function getStudyProgram($facultyName)
+public function getStudyProgram(Request $request,$id)
 {
-    // Ambil program studi berdasarkan nama fakultas
-    $programs = StudyProgram::whereHas('faculties', function ($query) use ($facultyName) {
-        $query->where('faculty_name', $facultyName);
-    })->get();
+    $programs = StudyProgram::where('faculty_id', $id)->get();
 
     return response()->json($programs);
 }
@@ -60,7 +58,7 @@ public function getStudyProgram($facultyName)
         if (!$prody) {
             abort(404, 'Program studi tidak ditemukan');
         }
-        return view('studyprogram.detail', compact('prody'));
+        return view('detailprodi', compact('prody'));
     }
 
     // Halaman prestasi
@@ -74,15 +72,16 @@ public function getStudyProgram($facultyName)
     public function acreditation()
 {
     $akred = Accreditation::paginate(6); // ambil semua data akreditasi
-    return view('acreditation', compact('akred')); // sesuaikan view-nya
+    return view('acreditation', compact('akred')); 
 }
 
     // Halaman Visi Misi / Profil
-    public function visimisi()
-    {
-    $profile = Profil::all(); // Ambil data dari tabel profil
-    return view('visimisi', compact('profile'));
-    }
+        public function visimisi()
+        {
+        Profil::create($request->only(['vission', 'mission'])); dd($request->all());
+
+        return view('visimisi', compact('profile'));
+        }
 
     public function structure()
 {
@@ -107,33 +106,55 @@ public function getStudyProgram($facultyName)
     // Halaman Form Pendaftaran
 public function registrationForm()
 {
-    return view('registrationForm'); // view: resources/views/registration/form.blade.php
+    $faculties = Faculties::all(); // ambil semua data fakultas
+    return view('registrationForm',compact('faculties')); // view: resources/views/registration/form.blade.php
 }
 
 // Menyimpan data pendaftaran
 public function processRegistration(Request $request)
 {
-    // Validasi data
-    $validated = $request->validate([
+    // Validasi data terlebih dahulu jika perlu
+    $request->validate([
         'name' => 'required|string|max:255',
-        'address' => 'required|string|max:255',
+        'address' => 'required|string',
         'dob' => 'required|date',
-        'faculty' => 'required|string',
-        'program' => 'required|string',
-        'phone' => 'required|string',
-        'country' => 'required|string',
+        'faculty' => 'required|integer',
+        'study_program' => 'required|integer',
+        'country' => 'required|string|max:100',
+        'phone' => 'required|string|max:20',
+        'email' => 'required|email|max:255',
     ]);
 
-    // Kirim email atau simpan ke database
-    Mail::to('rizkiap775@gmail.com')->send(new RegistrationMail($validated));
+    // Simpan data ke database
+    Registration::create([
+        'name' => $request->name,
+        'address' => $request->address,
+        'dob' => $request->dob,
+        'faculty' => $request->faculty,
+        'program' => $request->study_program,
+        'country' => $request->country,
+        'phone' => $request->phone,
+        'email' => $request->email,
+    ]);
 
-    // Setelah pengiriman berhasil
-    return back()->with('success', 'Pendaftaran berhasil!');
+    // Redirect ke halaman terima kasih
+    return redirect()->route('register.thankyou');
 }
-public function registration()
+
+
+public function showRegistrations()
 {
-    return view('emails/registration'); 
+    $pendaftarans = Registration::OrderBy('created_at', 'desc')->paginate(10); // ambil semua data pendaftaran
+    return view('admin.operator', compact('pendaftarans'));
 }
 
+public function accept($id)
+{
+    $registration = Registration::findOrFail($id);
+    $registration->status = 'accepted';
+    $registration->save();
+
+    return redirect()->back()->with('success', 'Pendaftaran berhasil diterima.');
+}
 
 }

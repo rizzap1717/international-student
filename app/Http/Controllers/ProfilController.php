@@ -21,6 +21,7 @@ class ProfilController extends Controller
     public function create()
     {
         $profil = Profil::all();
+        
         return view('admin.profil.index', compact('profil'));
     }
 
@@ -33,17 +34,23 @@ class ProfilController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'vission' => 'required',
-            'mission' => 'required'
+            'vission' => 'required|string',
+            'mission' => 'required|string',
         ]);
-
+    
+        // Cek apakah sudah ada profil
+        if (Profil::count() >= 1) {
+            return redirect()->back()->with('error', 'Hanya diperbolehkan satu data Profile.');
+        }
+    
         $profil = new Profil();
         $profil->vission = $request->vission;
         $profil->mission = $request->mission;
         $profil->save();
-
+    
         return redirect()->route('profile.index')->with('success', 'Data has been added successfully');
     }
+    
 
     /**
      * Display the specified resource.
