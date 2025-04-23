@@ -70,24 +70,30 @@ public function getStudyProgram(Request $request,$id)
 
     // Halaman akreditasi
     public function acreditation()
-{
+    {
     $akred = Accreditation::paginate(6); // ambil semua data akreditasi
     return view('acreditation', compact('akred')); 
-}
+    }
 
     // Halaman Visi Misi / Profil
-        public function visimisi()
-        {
-        Profil::create($request->only(['vission', 'mission'])); dd($request->all());
-
-        return view('visimisi', compact('profile'));
-        }
+    public function showVisimisi()
+    {
+    $profile = Profil::all();
+    return view('visimisi', compact('profile'));
+    }
+    public function visimisi(Request $request)
+    {
+    dd($request->all());
+    Profil::create($request->only(['vission', 'mission']));
+    $profile = Profil::latest()->first();
+    return view('visimisi', compact('profile'));
+    }
 
     public function structure()
-{
+    {
     $structure = Structure::all(); // ambil semua data struktur organisasi
     return view('structure', compact('structure'));
-}
+    }
 
     // Halaman utama (beranda)
     public function welcome() 
@@ -106,14 +112,14 @@ public function getStudyProgram(Request $request,$id)
     // Halaman Form Pendaftaran
 public function registrationForm()
 {
-    $faculties = Faculties::all(); // ambil semua data fakultas
-    return view('registrationForm',compact('faculties')); // view: resources/views/registration/form.blade.php
+    $faculties = Faculties::all(); 
+    return view('registrationForm',compact('faculties'));   
 }
 
 // Menyimpan data pendaftaran
 public function processRegistration(Request $request)
 {
-    // Validasi data terlebih dahulu jika perlu
+    
     $request->validate([
         'name' => 'required|string|max:255',
         'address' => 'required|string',

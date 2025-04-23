@@ -7,7 +7,7 @@
             <!-- Register -->
             <div class="card px-sm-6 px-0">
                 <div class="card-body">
-                    <h4 class="mb-1">Welcome to Piksi CMS 👋</h4>
+                    <h4 class="mb-1">Welcome to internasional Class 👋</h4>
                     <p class="mb-6">Please sign-in to your account and start the adventure</p>
 
                     <form id="formAuthentication" class="mb-6" action="{{ route('login') }}" method="POST">

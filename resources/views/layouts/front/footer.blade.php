@@ -16,14 +16,10 @@
         </div>
 
         <div class="col-lg-2 col-md-3 footer-links">
-          <h4>important links</h4>
+          <h4 class="current" style="font-size: 24px; color: #000;">important links</h4>
+
           <ul>
-            <li><i class="bi bi-chevron-right"></i> <a href="https://elearning.piksi.ac.id/">E - Learning</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="https://journal.piksi.ac.id/">Journal</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="https://mahasiswa.piksi.ac.id/">Online Value</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="https://piksilibrary.perpustakaan.co.id/home.ks">Library Online</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="https://docs.google.com/forms/d/e/1FAIpQLSexRNANULVR-Uh9bb-3PDeU1Gg6EvG3Xcx-W7EFKoc3TUUF6g/viewformrv ">PMB Online</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="https://sister.kemdikbud.go.id/beranda   ">SISTER</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="{{ route('register.form') }}" >Register</a></li>
           </ul>
         </div>
         <div class="col-lg-4 col-md-12">

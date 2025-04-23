@@ -8,7 +8,7 @@
         <div class="container_detail">
           <div class="row d-flex justify-content-center text-center">
             <div class="col-lg-8">
-              <h1>News Details</h1>
+              <h1 class="current" style="font-size: 50px; color: #000;">News Details</h1>
             </div>
           </div>
         </div>
@@ -17,7 +17,7 @@
         <div class="container">
           <ol>
             <li><a href="{{url('/')}}">Home</a></li>
-            <li class="current">News Details</li>
+            <li class="current" style="font-size: 24px; color: #000;">News Details</li>
           </ol>
         </div>
       </nav>

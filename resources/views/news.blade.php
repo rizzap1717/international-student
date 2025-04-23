@@ -46,7 +46,7 @@
                                         </div>
                                         <br>
                                         <div class="read-more">
-                                            <a href="{{ route('news.detail', $data->id) }}">Read More</a>
+                                            <a href="{{ route('newsDetail', $data->id) }}">Read More</a>
                                         </div>
                                     </article>
                                 </div>

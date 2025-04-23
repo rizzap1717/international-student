@@ -12,7 +12,7 @@
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title">Vision</h5>
-                            <p class="card-text"><b>{{$data->vission}}</b></p>
+                            <p class="card-text"  name="vission"><b>{{$data->vission}}</b></p>
                         </div>
                     </div>
                     @endforeach
@@ -26,7 +26,7 @@
                             
                         <div class="card-body">
                             <h5 class="card-title">Mission</h5>
-                            <p class="card-text"><b>{{$data->mission}}</b></p>
+                                
                         </div>
                         @endforeach
                     </div>
